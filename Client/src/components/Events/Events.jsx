@@ -17,6 +17,8 @@ const Events = () => {
   const navigate = useNavigate();
   const [auth] = useAuth();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
@@ -49,7 +51,7 @@ const Events = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/events",
+        `${url}/api/events`,
         formData,
         {
           headers: {

@@ -5,11 +5,13 @@ const VolunteerRequests = () => {
   const [requests, setRequests] = useState([]);
   const [error, setError] = useState(null);
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/volunteers"
+          `${url}/api/volunteers`
         );
         if (Array.isArray(response.data)) {
           setRequests(response.data);
@@ -29,7 +31,7 @@ const VolunteerRequests = () => {
   const handleApprove = async (id) => {
     try {
       await axios.post(
-        `http://localhost:5000//api/volunteers/${id}/approve`,
+        `${url}/api/volunteers/${id}/approve`,
         {},
         {
           withCredentials: true,
@@ -48,7 +50,7 @@ const VolunteerRequests = () => {
   const handleReject = async (id) => {
     try {
       await axios.post(
-        `http://localhost:5000//api/volunteers/${id}/reject`,
+        `${url}/api/volunteers/${id}/reject`,
         {},
         {
           withCredentials: true,

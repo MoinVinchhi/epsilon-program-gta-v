@@ -15,12 +15,14 @@ export default function Login() {
   const navigate = useNavigate();
   const { theme } = useTheme();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   axios.defaults.withCredentials = true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post(`${url}/login`, {
         email,
         password,
       });

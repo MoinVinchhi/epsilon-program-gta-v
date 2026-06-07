@@ -9,11 +9,13 @@ function VolunteeringForm({ isOpen, onClose, event }) {
   const [message, setMessage] = useState("");
   const [auth] = useAuth();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/volunteers", {
+      .post(`${url}/api/volunteers`, {
         eventId: event._id,
         name: auth.username,
         email: auth.email,

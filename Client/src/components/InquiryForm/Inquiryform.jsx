@@ -12,12 +12,14 @@ const InquiryForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const { theme } = useTheme();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/inquiries", {
+      const response = await fetch(`${url}/api/inquiries`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

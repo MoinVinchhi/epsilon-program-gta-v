@@ -11,9 +11,11 @@ function Volunteering() {
   const [volunteerStatus, setVolunteerStatus] = useState({});
   const [auth] = useAuth();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/events")
+      .get(`${url}/api/events`)
       .then((response) => {
         setEvents(response.data || []);
         setLoading(false);
@@ -25,7 +27,7 @@ function Volunteering() {
       });
 
     axios
-      .get("http://localhost:5000/api/volunteers")
+      .get(`${url}/api/volunteers`)
       .then((response) => {
         const statusMap = {};
         response.data.forEach((volunteer) => {
@@ -48,7 +50,7 @@ function Volunteering() {
 
     // Send interest request to the backend
     axios
-      .post("http://localhost:5000/api/volunteers", {
+      .post(`${url}/api/volunteers`, {
         eventId: event._id,
         userId: auth.userId,
       })

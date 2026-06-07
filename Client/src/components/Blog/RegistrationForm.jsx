@@ -31,9 +31,11 @@ const EventRegistrationForm = ({ isOpen, onClose, event }) => {
     };
     console.log(auth);
 
+    const url = import.meta.env.VITE_BACKEND_URL;
+
     try {
       // Send the data to the server
-      const response = await fetch("http://localhost:5000/api/eventRegister", {
+      const response = await fetch(`${url}/api/eventRegister`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

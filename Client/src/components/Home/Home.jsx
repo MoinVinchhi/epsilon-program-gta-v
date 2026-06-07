@@ -22,11 +22,13 @@ function Home() {
   const upcomingEvents = events.slice(0, 3);
   const lastFiveStories = stories.slice(0, 5);
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     setLoading(true);
 
     axios
-      .get("http://localhost:5000/api/events")
+      .get(`${url}/api/events`)
       .then((response) => {
         const today = moment().startOf("day");
         const upcomingEventsList = response.data.filter((event) =>
@@ -40,7 +42,7 @@ function Home() {
       .catch((error) => console.error(error));
 
     axios
-      .get("http://localhost:5000/stories")
+      .get(`${url}/stories`)
       .then((response) => {
         const sortedStories = response.data.sort(
           (a, b) => new Date(b.date) - new Date(a.date)

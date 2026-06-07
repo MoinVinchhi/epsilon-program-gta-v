@@ -5,10 +5,12 @@ const UserNews = () => {
   const [selectedNews, setSelectedNews] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("http://localhost:5000/news");
+        const response = await fetch(`${url}/news`);
         const data = await response.json();
         setNews(data);
       } catch (error) {

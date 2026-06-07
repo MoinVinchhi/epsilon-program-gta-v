@@ -12,10 +12,12 @@ const AdminNewsForm = () => {
   const navigate = useNavigate();
   const [auth] = useAuth();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/news", {
+      const response = await fetch(`${url}/news`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, description, image }),
@@ -32,7 +34,7 @@ const AdminNewsForm = () => {
         setDescription("");
         setImage("");
         // Refresh news list
-        const updatedResponse = await fetch("http://localhost:5000/news");
+        const updatedResponse = await fetch(`${url}/news`);
         const updatedData = await updatedResponse.json();
         setNewsItems(updatedData);
       } else {
@@ -57,7 +59,7 @@ const AdminNewsForm = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("http://localhost:5000/news");
+        const response = await fetch(`${url}/news`);
         const data = await response.json();
         setNewsItems(data);
       } catch (error) {
@@ -78,7 +80,7 @@ const AdminNewsForm = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/news/${editingNews}`,
+        `${url}/news/${editingNews}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -98,7 +100,7 @@ const AdminNewsForm = () => {
         setDescription("");
         setImage("");
         // Refresh news list
-        const updatedResponse = await fetch("http://localhost:5000/news");
+        const updatedResponse = await fetch(`${url}/news`);
         const updatedData = await updatedResponse.json();
         setNewsItems(updatedData);
       } else {
@@ -122,7 +124,7 @@ const AdminNewsForm = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/news/${id}`, {
+      const response = await fetch(`${url}/news/${id}`, {
         method: "DELETE",
       });
 
@@ -134,7 +136,7 @@ const AdminNewsForm = () => {
           confirmButtonText: "OK",
         });
         // Refresh news list
-        const updatedResponse = await fetch("http://localhost:5000/news");
+        const updatedResponse = await fetch(`${url}/news`);
         const updatedData = await updatedResponse.json();
         setNewsItems(updatedData);
       } else {

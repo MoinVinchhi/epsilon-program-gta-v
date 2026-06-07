@@ -30,6 +30,8 @@ const MembershipLayout = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const updatePoints = async (pointsToUpdate, membership_id) => {
     try {
       // Show a confirmation alert before proceeding
@@ -46,7 +48,7 @@ const MembershipLayout = () => {
       // Check if the user confirmed the action
       if (result.isConfirmed) {
         const response = await fetch(
-          `http://localhost:5000/updateuser/${auth.email}`,
+          `${url}/updateuser/${auth.email}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },

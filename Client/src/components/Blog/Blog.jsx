@@ -11,9 +11,11 @@ function Blog() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [auth] = useAuth();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/events")
+      .get(`${url}/api/events`)
       .then((response) => {
         setEvents(response.data || []);
         setLoading(false);
@@ -41,7 +43,7 @@ function Blog() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/api/events/${id}`)
+          .delete(`${url}/api/events/${id}`)
           .then(() => {
             setEvents(events.filter((event) => event._id !== id));
           })

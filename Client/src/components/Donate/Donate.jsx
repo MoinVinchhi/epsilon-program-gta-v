@@ -16,11 +16,13 @@ function Donate() {
   const navigate = useNavigate();
   const { theme } = useTheme();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const fetchData = async () => {
     if (auth.email) {
       try {
         const response = await fetch(
-          `http://localhost:5000/getalluser/${auth.email}`
+          `${url}/getalluser/${auth.email}`
         );
 
         const data = await response.json();
@@ -33,7 +35,7 @@ function Donate() {
 
   const fetchTotalDonations = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/total-donations`);
+      const response = await fetch(`${url}/total-donations`);
       const data = await response.json();
       setTotalDonations(data.total);
     } catch (error) {
@@ -67,7 +69,7 @@ function Donate() {
       console.log(auth.email);
 
       const response = await fetch(
-        `http://localhost:5000/donate/${auth.email}`,
+        `${url}/donate/${auth.email}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

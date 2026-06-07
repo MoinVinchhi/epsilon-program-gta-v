@@ -17,6 +17,8 @@ export default function App() {
   const [showPassword, setShowPassword] = useState(false);
   const { theme } = useTheme();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -45,7 +47,7 @@ export default function App() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/register",
+        `${url}/register`,
         formData,
         {
           headers: {

@@ -28,11 +28,13 @@ const AuthProvider = ({ children }) => {
     axios.defaults.headers.common["Authorization"] = auth?.token;
   }, [auth.token]);
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const fetchData = async () => {
     if (auth.email) {
       try {
         const response = await axios.get(
-          `http://localhost:5000/getalluser/${auth.email}`
+          `${url}/getalluser/${auth.email}`
         );
         setUserData(response.data);
       } catch (error) {

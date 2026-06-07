@@ -10,10 +10,12 @@ const AdminInquiries = () => {
   const navigate = useNavigate();
   const [auth] = useAuth();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const fetchInquiries = async () => {
       try {
-        const response = await fetch("http://localhost:5000/admin/inquiries");
+        const response = await fetch(`${url}/admin/inquiries`);
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         setInquiries(data);

@@ -10,10 +10,12 @@ const AllUsers = () => {
   const navigate = useNavigate();
   const [auth] = useAuth();
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   // Fetch users data
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/getallusers");
+      const response = await fetch(`${url}/getallusers`);
       if (!response.ok) {
         throw new Error("Failed to fetch users");
       }

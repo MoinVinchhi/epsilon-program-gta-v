@@ -140,10 +140,12 @@ const MembershipTier = ({
   const textPrimary = theme === "blue" ? "text-blue-900" : "text-gray-100";
   const textSecondary = theme === "blue" ? "text-blue-700" : "text-gray-300";
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const [News, setNews] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/news")
+      .get(`${url}/news`)
       .then((response) => {
         const sortedNews = response.data.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
@@ -433,9 +435,11 @@ const MembershipLayout = () => {
     return <div>Invalid membership ID</div>;
   }
 
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   const handleCancelMembership = async () => {
     try {
-      const response = await fetch("http://localhost:5000/cancel", {
+      const response = await fetch(`${url}/cancel`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: auth.username }),
