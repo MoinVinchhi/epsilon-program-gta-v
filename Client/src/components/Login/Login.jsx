@@ -80,7 +80,7 @@ export default function Login() {
     theme === "blue" ? "hover:bg-green-600" : "hover:bg-yellow-600";
 
   return (
-    <div className={`flex justify-center items-center ${overlayColor} `}>
+    <div className={`flex justify-center items-center ${overlayColor} p-10`}>
       <div
         className={`max-w-md h-fit w-full p-6 ${containerBgColor} rounded-lg opacity-90 shadow-md`}
       >

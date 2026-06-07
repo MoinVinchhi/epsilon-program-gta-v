@@ -132,7 +132,7 @@ export default function Footer() {
                             </svg>
                             <span className="sr-only">Twitter page</span>
                         </Link>
-                        <Link to="#" className="text-gray-500">
+                        <Link to="https://github.com/MoinVinchhi/" className="text-gray-500">
                             <svg
                                 className="w-4 h-4"
                                 aria-hidden="true"
